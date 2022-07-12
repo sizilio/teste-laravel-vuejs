@@ -34,6 +34,11 @@ class AddressController extends Controller {
      */
     public function create() {}
 
+    /**
+     * Busca dados
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function find (Request $request) {
 
         // Busca por cep
@@ -72,13 +77,6 @@ class AddressController extends Controller {
         // Valida e verifica se existe Cep
         $request->validate(['cep' => 'required|size:8']);
         $address = $this->checkExistAddress($request->get('cep'), true);
-
-        // Se não existe no banco local, adiciona um novo endereço
-//        if ($address === false) {
-//            $data = $this->getCep($request->get('cep'));
-//            $data['cep'] = $request->get('cep');
-//            $address = Address::create($data);
-//        }
 
         // Return
         return response()->json([

@@ -94,13 +94,13 @@
         methods: {
             searchAll () {
                 axios
-                    .get('http://localhost/testes/piemonte/public/api/cep')
+                    .get('api/cep')
                     .then(response => (this.adresses = response.data.adresses))
             },
             searchLogradouro (value) {
                 this.loading = true;
                 axios
-                    .post('http://localhost/testes/piemonte/public/api/cep/find', {'logradouro': value})
+                    .post('api/cep/find', {'logradouro': value})
                     .then((response) => {this.adresses = response.data.address})
                     .catch(e => console.log(e))
                     .finally(() => {
@@ -110,7 +110,7 @@
             searchCep (value) {
                 this.loading = true;
                 axios
-                    .post('http://localhost/testes/piemonte/public/api/cep/find', {'cep': value})
+                    .post('api/cep/find', {'cep': value})
                     .then((response) => {this.adresses = response.data.address; console.log(response)})
                     .catch(e => console.log(e))
                     .finally(() => {
